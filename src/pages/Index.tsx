@@ -1,12 +1,30 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import Header from '@/components/Header';
+import SearchForm from '@/components/SearchForm';
+import Testimonials from '@/components/Testimonials';
+import FAQ from '@/components/FAQ';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <Header />
+      
+      <main>
+        {/* Hero Section with Search Form */}
+        <section className="py-16 px-6">
+          <SearchForm />
+        </section>
+
+        {/* Testimonials Section */}
+        <Testimonials />
+
+        {/* FAQ Section */}
+        <FAQ />
+      </main>
+
+      <Footer />
     </div>
   );
 };
