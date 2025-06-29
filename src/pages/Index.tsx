@@ -8,12 +8,12 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <Header />
       
       <main>
         {/* Hero Section with Search Form */}
-        <section className="py-16 px-6">
+        <section className="py-20 px-6">
           <SearchForm />
         </section>
 

@@ -1,71 +1,75 @@
 
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { HelpCircle } from 'lucide-react';
 
 const FAQ = () => {
   const faqs = [
     {
-      question: 'Как долго занимает получение отчета?',
-      answer: 'Отчет формируется мгновенно! После ввода VIN номера или госномера вы получите полную информацию об автомобиле в течение нескольких секунд.'
+      question: 'How long does it take to get a report?',
+      answer: 'Reports are generated instantly! After entering your VIN number or license plate, you\'ll receive comprehensive vehicle information within seconds.'
     },
     {
-      question: 'Какую информацию включает отчет?',
-      answer: 'Наш отчет включает: историю владельцев, данные о ДТП, сервисные записи, проверку на угон, историю пробега, информацию о залогах и многое другое. Вся информация собирается из официальных источников.'
+      question: 'What information is included in the report?',
+      answer: 'Our reports include: ownership history, accident records, service records, theft checks, mileage history, lien information, and much more. All information is gathered from official sources and databases.'
     },
     {
-      question: 'Защищена ли моя персональная информация?',
-      answer: 'Абсолютно! Мы используем современные технологии шифрования SSL для защиты ваших данных. Вся информация обрабатывается конфиденциально и не передается третьим лицам.'
+      question: 'Is my personal information protected?',
+      answer: 'Absolutely! We use advanced SSL encryption technology to protect your data. All information is processed confidentially and is never shared with third parties.'
     },
     {
-      question: 'Предоставляете ли вы скидки на несколько отчетов?',
-      answer: 'Да! Зарегистрированные пользователи получают специальные скидки при заказе нескольких отчетов. Также доступны пакетные предложения для дилеров и автосалонов. Войдите в систему, чтобы узнать о доступных скидках.'
+      question: 'Do you offer discounts for multiple reports?',
+      answer: 'Yes! Registered users receive special discounts when ordering multiple reports. We also offer package deals for dealers and auto lots. Sign in to see available discounts and special offers.'
     },
     {
-      question: 'Какие способы оплаты вы принимаете?',
-      answer: 'Мы принимаем все основные банковские карты (Visa, MasterCard, МИР), электронные кошельки, банковские переводы и другие популярные способы оплаты. Все платежи проходят через защищенные каналы.'
+      question: 'What payment methods do you accept?',
+      answer: 'We accept all major credit cards (Visa, MasterCard, American Express), digital wallets, bank transfers, and other popular payment methods. All payments are processed through secure channels.'
     },
     {
-      question: 'Можно ли получить возврат средств?',
-      answer: 'Если по техническим причинам мы не смогли предоставить отчет, средства возвращаются в полном объеме. В остальных случаях возврат не предусмотрен, так как информация уже предоставлена.'
+      question: 'Can I get a refund?',
+      answer: 'If we are unable to provide a report due to technical reasons, funds are returned in full. In other cases, refunds are not provided as the information has already been delivered.'
     }
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-20 bg-white">
       <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Часто задаваемые вопросы
-          </h2>
-          <p className="text-xl text-gray-600">
-            Ответы на популярные вопросы о нашем сервисе
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center mb-4">
+            <HelpCircle className="h-12 w-12 text-blue-600 mr-3" />
+            <h2 className="text-5xl font-bold text-gray-900">
+              Frequently Asked Questions
+            </h2>
+          </div>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Find answers to common questions about our vehicle history service
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="space-y-4">
+        <Accordion type="single" collapsible className="space-y-6">
           {faqs.map((faq, index) => (
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="border border-gray-200 rounded-lg px-6 bg-gray-50/50"
+              className="border-2 border-gray-100 rounded-2xl px-8 bg-gradient-to-r from-gray-50/50 to-blue-50/30 hover:shadow-lg transition-all duration-200"
             >
-              <AccordionTrigger className="text-left text-lg font-semibold py-6 hover:no-underline">
+              <AccordionTrigger className="text-left text-xl font-bold py-8 hover:no-underline text-gray-800 hover:text-blue-600 transition-colors">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 pb-6 text-base leading-relaxed">
+              <AccordionContent className="text-gray-600 pb-8 text-lg leading-relaxed">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
 
-        <div className="mt-12 text-center">
-          <p className="text-gray-600 mb-4">Не нашли ответ на свой вопрос?</p>
+        <div className="mt-16 text-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+          <p className="text-gray-700 mb-4 text-lg">Still have questions?</p>
           <a 
             href="#contact" 
-            className="text-blue-600 hover:text-blue-700 font-semibold underline"
+            className="text-blue-600 hover:text-blue-700 font-bold text-xl underline decoration-2 underline-offset-4 hover:decoration-blue-700 transition-all"
           >
-            Свяжитесь с нами
+            Contact Our Support Team
           </a>
         </div>
       </div>

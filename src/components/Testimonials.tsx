@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -10,31 +10,35 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Евгения П.',
+      name: 'Sarah Johnson',
+      role: 'First-time car buyer',
       rating: 5,
-      text: 'Отчет предоставил всю необходимую информацию для принятия обоснованного решения. Определенно стоит своих денег!',
-      avatar: 'ЕП'
+      text: 'AutoCheck saved me from buying a car with hidden damage! The report was incredibly detailed and easy to understand. Worth every penny!',
+      avatar: 'SJ'
     },
     {
       id: 2,
-      name: 'Александр М.',
+      name: 'Michael Rodriguez',
+      role: 'Car dealer',
       rating: 5,
-      text: 'Быстро, удобно и информативно. Помог избежать покупки проблемного автомобиля. Рекомендую!',
-      avatar: 'АМ'
+      text: 'As a dealer, I use AutoCheck for all my inventory. Fast, reliable, and comprehensive reports that my customers trust.',
+      avatar: 'MR'
     },
     {
       id: 3,
-      name: 'Марина К.',
+      name: 'Emily Chen',
+      role: 'Used car shopper',
       rating: 5,
-      text: 'Отличный сервис! Получила подробный отчет за пару минут. Очень помогло при покупке подержанного авто.',
-      avatar: 'МК'
+      text: 'The instant report feature is amazing! Got all the information I needed in seconds. Highly recommend for anyone buying used cars.',
+      avatar: 'EC'
     },
     {
       id: 4,
-      name: 'Дмитрий В.',
+      name: 'David Thompson',
+      role: 'Auto enthusiast',
       rating: 5,
-      text: 'Профессиональный подход к проверке автомобилей. Все данные точные и актуальные. Спасибо!',
-      avatar: 'ДВ'
+      text: 'Professional service with accurate data. The detailed history helped me negotiate a better price. Excellent value!',
+      avatar: 'DT'
     }
   ];
 
@@ -47,35 +51,42 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Отзывы клиентов
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold text-gray-900 mb-6">
+            What Our Customers Say
           </h2>
-          <p className="text-xl text-gray-600">
-            Что говорят о нас наши клиенты
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Join thousands of satisfied customers who trust AutoCheck for their vehicle history needs
           </p>
         </div>
 
         <div className="relative">
-          <Card className="p-8 bg-white shadow-lg border-0 min-h-[250px] flex flex-col justify-center">
-            <div className="flex items-center justify-center mb-4">
+          <Card className="p-10 bg-white shadow-2xl border-0 rounded-3xl min-h-[320px] flex flex-col justify-center relative overflow-hidden">
+            <Quote className="absolute top-6 left-6 h-12 w-12 text-blue-200" />
+            
+            <div className="flex items-center justify-center mb-6">
               {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+                <Star key={i} className="h-7 w-7 text-yellow-400 fill-current mx-1" />
               ))}
             </div>
             
-            <blockquote className="text-xl text-gray-700 text-center mb-6 leading-relaxed">
+            <blockquote className="text-2xl text-gray-700 text-center mb-8 leading-relaxed font-medium">
               "{testimonials[currentIndex].text}"
             </blockquote>
             
-            <div className="flex items-center justify-center space-x-3">
-              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
+            <div className="flex items-center justify-center space-x-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
                 {testimonials[currentIndex].avatar}
               </div>
-              <div className="text-lg font-semibold text-gray-900">
-                {testimonials[currentIndex].name}
+              <div className="text-left">
+                <div className="text-xl font-bold text-gray-900">
+                  {testimonials[currentIndex].name}
+                </div>
+                <div className="text-blue-600 font-medium">
+                  {testimonials[currentIndex].role}
+                </div>
               </div>
             </div>
           </Card>
@@ -84,7 +95,7 @@ const Testimonials = () => {
             variant="ghost"
             size="sm"
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full bg-white shadow-lg hover:bg-gray-50"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-6 w-14 h-14 rounded-full bg-white shadow-xl hover:bg-gray-50 border border-gray-200"
           >
             <ChevronLeft className="h-6 w-6" />
           </Button>
@@ -93,19 +104,21 @@ const Testimonials = () => {
             variant="ghost"
             size="sm"
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full bg-white shadow-lg hover:bg-gray-50"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-6 w-14 h-14 rounded-full bg-white shadow-xl hover:bg-gray-50 border border-gray-200"
           >
             <ChevronRight className="h-6 w-6" />
           </Button>
         </div>
 
-        <div className="flex justify-center mt-6 space-x-2">
+        <div className="flex justify-center mt-8 space-x-3">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
+              className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                index === currentIndex 
+                  ? 'bg-blue-600 scale-125' 
+                  : 'bg-gray-300 hover:bg-gray-400'
               }`}
             />
           ))}
