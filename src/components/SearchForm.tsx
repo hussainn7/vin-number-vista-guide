@@ -1,144 +1,189 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Search, Car, CreditCard, Shield, Star, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card } from '@/components/ui/card';
-import { Search, Shield, CreditCard, CheckCircle, Zap, FileText } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 const SearchForm = () => {
-  const [activeTab, setActiveTab] = useState('vin');
-  const [vin, setVin] = useState('');
-  const [licensePlate, setLicensePlate] = useState('');
-  const [state, setState] = useState('');
+  const navigate = useNavigate();
+  const [searchType, setSearchType] = useState('vin');
+  const [vinNumber, setVinNumber] = useState('');
+  const [plateNumber, setPlateNumber] = useState('');
+  const [selectedState, setSelectedState] = useState('');
 
-  const usStates = [
-    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 
-    'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 
-    'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 
-    'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 
-    'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 
-    'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 
-    'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 
-    'Wisconsin', 'Wyoming'
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if ((searchType === 'vin' && vinNumber) || (searchType === 'plate' && plateNumber && selectedState)) {
+      navigate('/report');
+    }
+  };
+
+  const states = [
+    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
+    'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
+    'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+    'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
+    'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+    'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
   ];
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-12">
-      <div className="text-center space-y-6">
-        <h1 className="text-6xl font-bold text-gray-900 leading-tight">
+    <div className="max-w-6xl mx-auto">
+      {/* Hero Section */}
+      <div className="text-center mb-12">
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
           Get Your Vehicle's
-          <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
             Complete History
           </span>
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          Comprehensive vehicle history reports in seconds. Make informed decisions with our detailed analysis.
+        <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          Discover accidents, service records, ownership history, and more with our comprehensive vehicle reports
         </p>
       </div>
 
-      <Card className="p-8 shadow-2xl border-0 bg-white/90 backdrop-blur-sm rounded-3xl">
-        <div className="flex mb-8 bg-gray-100 rounded-2xl p-2">
-          <button
-            onClick={() => setActiveTab('vin')}
-            className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2 ${
-              activeTab === 'vin'
-                ? 'bg-white text-blue-600 shadow-lg transform scale-105'
-                : 'text-gray-600 hover:text-gray-800'
-            }`}
-          >
-            <FileText className="h-5 w-5" />
-            <span>Search by VIN</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('license')}
-            className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2 ${
-              activeTab === 'license'
-                ? 'bg-white text-blue-600 shadow-lg transform scale-105'
-                : 'text-gray-600 hover:text-gray-800'
-            }`}
-          >
-            <Search className="h-5 w-5" />
-            <span>Search by License Plate</span>
-          </button>
-        </div>
+      {/* Search Form */}
+      <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 mb-12">
+        <CardContent className="p-8">
+          <form onSubmit={handleSearch} className="space-y-6">
+            {/* Search Type Toggle */}
+            <div className="flex justify-center mb-8">
+              <div className="bg-gray-100 p-1 rounded-xl">
+                <button
+                  type="button"
+                  onClick={() => setSearchType('vin')}
+                  className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+                    searchType === 'vin'
+                      ? 'bg-blue-600 text-white shadow-lg'
+                      : 'text-gray-600 hover:text-blue-600'
+                  }`}
+                >
+                  Search by VIN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSearchType('plate')}
+                  className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+                    searchType === 'plate'
+                      ? 'bg-blue-600 text-white shadow-lg'
+                      : 'text-gray-600 hover:text-blue-600'
+                  }`}
+                >
+                  Search by License Plate
+                </button>
+              </div>
+            </div>
 
-        {activeTab === 'vin' ? (
-          <div className="space-y-6">
-            <div className="relative">
-              <Input
-                type="text"
-                placeholder="Enter 17-character VIN number"
-                value={vin}
-                onChange={(e) => setVin(e.target.value.toUpperCase())}
-                className="h-16 text-lg pl-6 pr-14 border-2 border-gray-200 focus:border-blue-500 rounded-2xl bg-white/80 backdrop-blur-sm transition-all duration-200"
-                maxLength={17}
-              />
-              <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400" size={24} />
-              <div className="absolute -bottom-6 left-2 text-sm text-gray-500">
-                {vin.length}/17 characters
+            {/* VIN Search */}
+            {searchType === 'vin' && (
+              <div className="space-y-4">
+                <div className="relative">
+                  <Car className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <Input
+                    type="text"
+                    placeholder="Enter 17-digit VIN number"
+                    value={vinNumber}
+                    onChange={(e) => setVinNumber(e.target.value)}
+                    className="pl-12 h-14 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-xl"
+                    maxLength={17}
+                  />
+                </div>
+                <p className="text-sm text-gray-500 text-center">
+                  VIN is usually found on your dashboard, driver's side door, or vehicle registration
+                </p>
               </div>
-            </div>
-            <Button 
-              className="w-full h-16 text-lg font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:via-indigo-700 hover:to-blue-800 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
-              disabled={vin.length !== 17}
-            >
-              <Zap className="h-5 w-5 mr-2" />
-              Get Instant Report
-            </Button>
-          </div>
-        ) : (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="relative">
-                <Input
-                  type="text"
-                  placeholder="License plate number"
-                  value={licensePlate}
-                  onChange={(e) => setLicensePlate(e.target.value.toUpperCase())}
-                  className="h-16 text-lg pl-6 pr-14 border-2 border-gray-200 focus:border-blue-500 rounded-2xl bg-white/80 backdrop-blur-sm transition-all duration-200"
-                />
-                <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400" size={24} />
+            )}
+
+            {/* License Plate Search */}
+            {searchType === 'plate' && (
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="relative">
+                  <Input
+                    type="text"
+                    placeholder="License Plate Number"
+                    value={plateNumber}
+                    onChange={(e) => setPlateNumber(e.target.value)}
+                    className="h-14 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-xl"
+                  />
+                </div>
+                <Select value={selectedState} onValueChange={setSelectedState}>
+                  <SelectTrigger className="h-14 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-xl">
+                    <SelectValue placeholder="Select State" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-60">
+                    {states.map((state) => (
+                      <SelectItem key={state} value={state}>
+                        {state}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
-              <Select value={state} onValueChange={setState}>
-                <SelectTrigger className="h-16 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-2xl bg-white/80 backdrop-blur-sm">
-                  <SelectValue placeholder="Select state" />
-                </SelectTrigger>
-                <SelectContent className="max-h-60 rounded-xl">
-                  {usStates.map((stateName) => (
-                    <SelectItem key={stateName} value={stateName} className="rounded-lg">
-                      {stateName}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <Button 
-              className="w-full h-16 text-lg font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:via-indigo-700 hover:to-blue-800 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
-              disabled={!licensePlate || !state}
+            )}
+
+            <Button
+              type="submit"
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200"
+              disabled={
+                (searchType === 'vin' && !vinNumber) ||
+                (searchType === 'plate' && (!plateNumber || !selectedState))
+              }
             >
-              <Zap className="h-5 w-5 mr-2" />
-              Get Instant Report
+              <Search className="h-5 w-5 mr-2" />
+              Get Vehicle Report
             </Button>
-          </div>
-        )}
+          </form>
+        </CardContent>
       </Card>
 
-      {/* Payment Options */}
-      <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-        <h3 className="text-center text-lg font-semibold text-gray-800 mb-4">Trusted Payment Methods</h3>
-        <div className="flex items-center justify-center space-x-8 text-sm text-gray-600">
-          <div className="flex items-center space-x-2 bg-green-50 px-4 py-2 rounded-xl">
-            <Shield className="h-5 w-5 text-green-600" />
-            <span className="font-medium">Secure Payment</span>
+      {/* Features Grid */}
+      <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Shield className="h-8 w-8 text-blue-600" />
           </div>
-          <div className="flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-xl">
-            <CheckCircle className="h-5 w-5 text-blue-600" />
-            <span className="font-medium">100% Confidential</span>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Accident History</h3>
+          <p className="text-gray-600">Detailed accident reports and damage assessments</p>
+        </div>
+        
+        <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Clock className="h-8 w-8 text-green-600" />
           </div>
-          <div className="flex items-center space-x-2 bg-purple-50 px-4 py-2 rounded-xl">
-            <CreditCard className="h-5 w-5 text-purple-600" />
-            <span className="font-medium">All Cards Accepted</span>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Service Records</h3>
+          <p className="text-gray-600">Complete maintenance and repair history</p>
+        </div>
+        
+        <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Star className="h-8 w-8 text-purple-600" />
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Title Information</h3>
+          <p className="text-gray-600">Ownership history and title status verification</p>
+        </div>
+      </div>
+
+      {/* Payment Methods */}
+      <div className="text-center mb-8">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Secure Payment Options</h3>
+        <div className="flex justify-center items-center space-x-6 opacity-70">
+          <div className="bg-white px-4 py-2 rounded-lg shadow-md">
+            <CreditCard className="h-6 w-6 text-blue-600" />
+          </div>
+          <div className="bg-white px-4 py-2 rounded-lg shadow-md text-sm font-bold text-blue-600">
+            VISA
+          </div>
+          <div className="bg-white px-4 py-2 rounded-lg shadow-md text-sm font-bold text-red-600">
+            MC
+          </div>
+          <div className="bg-white px-4 py-2 rounded-lg shadow-md text-sm font-bold text-blue-600">
+            AMEX
+          </div>
+          <div className="bg-white px-4 py-2 rounded-lg shadow-md text-sm font-bold text-blue-600">
+            PayPal
           </div>
         </div>
       </div>

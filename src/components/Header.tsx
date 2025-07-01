@@ -1,9 +1,17 @@
 
-import React from 'react';
-import { Car, User } from 'lucide-react';
+import React, { useState } from 'react';
+import { Car, User, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Header = () => {
+  const [language, setLanguage] = useState('EN');
+
   return (
     <header className="w-full py-6 px-6 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -19,13 +27,41 @@ const Header = () => {
           </div>
         </div>
         
-        <Button 
-          variant="outline" 
-          className="bg-white/80 border-blue-200 text-blue-700 hover:bg-blue-50 hover:border-blue-300 font-semibold px-6 py-2 rounded-xl shadow-sm transition-all duration-200"
-        >
-          <User className="h-4 w-4 mr-2" />
-          Sign In
-        </Button>
+        <div className="flex items-center space-x-4">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="outline" 
+                className="bg-white/80 border-blue-200 text-blue-700 hover:bg-blue-50 hover:border-blue-300 font-semibold px-4 py-2 rounded-xl shadow-sm transition-all duration-200"
+              >
+                <Globe className="h-4 w-4 mr-2" />
+                {language}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg rounded-lg">
+              <DropdownMenuItem 
+                onClick={() => setLanguage('EN')}
+                className="cursor-pointer hover:bg-blue-50"
+              >
+                English (EN)
+              </DropdownMenuItem>
+              <DropdownMenuItem 
+                onClick={() => setLanguage('ES')}
+                className="cursor-pointer hover:bg-blue-50"
+              >
+                Español (ES)
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <Button 
+            variant="outline" 
+            className="bg-white/80 border-blue-200 text-blue-700 hover:bg-blue-50 hover:border-blue-300 font-semibold px-6 py-2 rounded-xl shadow-sm transition-all duration-200"
+          >
+            <User className="h-4 w-4 mr-2" />
+            Sign In
+          </Button>
+        </div>
       </div>
     </header>
   );
