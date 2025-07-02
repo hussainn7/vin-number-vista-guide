@@ -1,77 +1,80 @@
 
 import React from 'react';
+import { ChevronDown } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { HelpCircle } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const FAQ = () => {
+  const { t, language } = useLanguage();
+
   const faqs = [
     {
-      question: 'How long does it take to get a report?',
-      answer: 'Reports are generated instantly! After entering your VIN number or license plate, you\'ll receive comprehensive vehicle information within seconds.'
+      question: {
+        EN: "What information is included in a vehicle history report?",
+        ES: "¿Qué información se incluye en un reporte del historial del vehículo?"
+      },
+      answer: {
+        EN: "Our reports include accident history, service records, title information, previous owners, and more. We gather data from multiple sources to provide you with a comprehensive overview.",
+        ES: "Nuestros reportes incluyen historial de accidentes, registros de servicio, información del título, propietarios anteriores y más. Recopilamos datos de múltiples fuentes para brindarle una visión completa."
+      }
     },
     {
-      question: 'What information is included in the report?',
-      answer: 'Our reports include: ownership history, accident records, service records, theft checks, mileage history, lien information, and much more. All information is gathered from official sources and databases.'
+      question: {
+        EN: "How quickly will I receive my report?",
+        ES: "¿Qué tan rápido recibiré mi reporte?"
+      },
+      answer: {
+        EN: "Most reports are delivered instantly after payment. In rare cases, it may take up to 24 hours for comprehensive data compilation.",
+        ES: "La mayoría de los reportes se entregan instantáneamente después del pago. En casos raros, puede tomar hasta 24 horas para la compilación completa de datos."
+      }
     },
     {
-      question: 'Is my personal information protected?',
-      answer: 'Absolutely! We use advanced SSL encryption technology to protect your data. All information is processed confidentially and is never shared with third parties.'
+      question: {
+        EN: "Do you offer discounts for multiple reports?",
+        ES: "¿Ofrecen descuentos para múltiples reportes?"
+      },
+      answer: {
+        EN: "Yes! Registered users get special discounts on bulk purchases and subscription plans. Sign up for an account to access these exclusive offers.",
+        ES: "¡Sí! Los usuarios registrados obtienen descuentos especiales en compras al por mayor y planes de suscripción. Regístrese para acceder a estas ofertas exclusivas."
+      }
     },
     {
-      question: 'Do you offer discounts for multiple reports?',
-      answer: 'Yes! Registered users receive special discounts when ordering multiple reports. We also offer package deals for dealers and auto lots. Sign in to see available discounts and special offers.'
-    },
-    {
-      question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards (Visa, MasterCard, American Express), digital wallets, bank transfers, and other popular payment methods. All payments are processed through secure channels.'
-    },
-    {
-      question: 'Can I get a refund?',
-      answer: 'If we are unable to provide a report due to technical reasons, funds are returned in full. In other cases, refunds are not provided as the information has already been delivered.'
+      question: {
+        EN: "Is my personal information secure?",
+        ES: "¿Mi información personal está segura?"
+      },
+      answer: {
+        EN: "Absolutely. We use enterprise-grade encryption and never share your personal information with third parties. Your privacy is our top priority.",
+        ES: "Absolutamente. Utilizamos encriptación de nivel empresarial y nunca compartimos su información personal con terceros. Su privacidad es nuestra máxima prioridad."
+      }
     }
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-4">
-            <HelpCircle className="h-12 w-12 text-blue-600 mr-3" />
-            <h2 className="text-5xl font-bold text-gray-900">
-              Frequently Asked Questions
-            </h2>
-          </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Find answers to common questions about our vehicle history service
-          </p>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            {t.faqTitle}
+          </h2>
         </div>
-
-        <Accordion type="single" collapsible className="space-y-6">
+        
+        <Accordion type="single" collapsible className="space-y-4">
           {faqs.map((faq, index) => (
-            <AccordionItem
-              key={index}
+            <AccordionItem 
+              key={index} 
               value={`item-${index}`}
-              className="border-2 border-gray-100 rounded-2xl px-8 bg-gradient-to-r from-gray-50/50 to-blue-50/30 hover:shadow-lg transition-all duration-200"
+              className="bg-white/80 backdrop-blur-sm rounded-xl border-0 shadow-lg"
             >
-              <AccordionTrigger className="text-left text-xl font-bold py-8 hover:no-underline text-gray-800 hover:text-blue-600 transition-colors">
-                {faq.question}
+              <AccordionTrigger className="px-8 py-6 text-left font-semibold text-gray-900 hover:no-underline hover:bg-white/50 rounded-xl">
+                {faq.question[language]}
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 pb-8 text-lg leading-relaxed">
-                {faq.answer}
+              <AccordionContent className="px-8 pb-6 text-gray-700 leading-relaxed">
+                {faq.answer[language]}
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
-
-        <div className="mt-16 text-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-          <p className="text-gray-700 mb-4 text-lg">Still have questions?</p>
-          <a 
-            href="#contact" 
-            className="text-blue-600 hover:text-blue-700 font-bold text-xl underline decoration-2 underline-offset-4 hover:decoration-blue-700 transition-all"
-          >
-            Contact Our Support Team
-          </a>
-        </div>
       </div>
     </section>
   );

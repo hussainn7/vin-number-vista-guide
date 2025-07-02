@@ -5,9 +5,11 @@ import { ArrowLeft, FileText, Shield, AlertTriangle, CheckCircle } from 'lucide-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Report = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [source, setSource] = useState('');
   const [showReport, setShowReport] = useState(false);
 
@@ -27,13 +29,13 @@ const Report = () => {
             className="mb-6 bg-white/80"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Search
+            {t.backToSearch}
           </Button>
 
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Vehicle History Report</h1>
-              <p className="text-gray-600">VIN: 1HGBH41JXMN109186 | Source: {source}</p>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">{t.vehicleHistoryReport}</h1>
+              <p className="text-gray-600">VIN: 1HGBH41JXMN109186 | {t.source}: {source}</p>
             </div>
 
             <div className="grid gap-6">
@@ -41,7 +43,7 @@ const Report = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-                    Vehicle Overview
+                    {t.vehicleOverview}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -66,13 +68,13 @@ const Report = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Shield className="h-5 w-5 text-blue-500 mr-2" />
-                    Title Information
+                    {t.titleInformation}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center space-x-2 text-green-600">
                     <CheckCircle className="h-4 w-4" />
-                    <span>Clean Title - No Issues Found</span>
+                    <span>{t.cleanTitle}</span>
                   </div>
                 </CardContent>
               </Card>
@@ -81,7 +83,7 @@ const Report = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <FileText className="h-5 w-5 text-purple-500 mr-2" />
-                    Service Records
+                    {t.serviceRecords}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -102,13 +104,13 @@ const Report = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <AlertTriangle className="h-5 w-5 text-orange-500 mr-2" />
-                    Accident History
+                    {t.accidentHistory}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center space-x-2 text-green-600">
                     <CheckCircle className="h-4 w-4" />
-                    <span>No Accidents Reported</span>
+                    <span>{t.noAccidentsReported}</span>
                   </div>
                 </CardContent>
               </Card>
@@ -116,7 +118,7 @@ const Report = () => {
 
             <div className="text-center mt-8">
               <p className="text-sm text-gray-500">
-                This is a demo report. Actual reports may contain additional information.
+                {t.demoReportNote}
               </p>
             </div>
           </div>
@@ -131,18 +133,18 @@ const Report = () => {
         <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-gray-900">
-              Select Report Source
+              {t.selectReportSource}
             </CardTitle>
-            <p className="text-gray-600">Choose your preferred data source</p>
+            <p className="text-gray-600">{t.chooseDataSource}</p>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Source (Источник)
+                {t.source}
               </label>
               <Select value={source} onValueChange={setSource}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a source" />
+                  <SelectValue placeholder={t.selectSource} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="AutoCheck">AutoCheck</SelectItem>
@@ -156,7 +158,7 @@ const Report = () => {
               disabled={!source}
               className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
-              Get Report
+              {t.getReport}
             </Button>
 
             <Button 
@@ -164,7 +166,7 @@ const Report = () => {
               variant="outline"
               className="w-full"
             >
-              Back to Search
+              {t.backToSearch}
             </Button>
           </CardContent>
         </Card>

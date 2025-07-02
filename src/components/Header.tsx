@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Car, User, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -8,9 +8,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Header = () => {
-  const [language, setLanguage] = useState('EN');
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <header className="w-full py-6 px-6 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 z-50 shadow-sm">
@@ -59,7 +60,7 @@ const Header = () => {
             className="bg-white/80 border-blue-200 text-blue-700 hover:bg-blue-50 hover:border-blue-300 font-semibold px-6 py-2 rounded-xl shadow-sm transition-all duration-200"
           >
             <User className="h-4 w-4 mr-2" />
-            Sign In
+            {t.signIn}
           </Button>
         </div>
       </div>
