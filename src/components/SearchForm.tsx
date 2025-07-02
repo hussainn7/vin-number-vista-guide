@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Shield, CreditCard, Car } from 'lucide-react';
@@ -43,46 +44,46 @@ const SearchForm = () => {
     <div className="max-w-7xl mx-auto">
       {/* Hero Section */}
       <div className="text-center mb-12">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl mb-6 shadow-2xl">
-          <Car className="h-10 w-10 text-white" />
+        <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-3xl mb-8 shadow-2xl animate-pulse">
+          <Car className="h-12 w-12 text-white" />
         </div>
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+        <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-8 leading-tight">
           {t.heroTitle}
         </h1>
-        <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
           {t.heroSubtitle}
         </p>
       </div>
 
       {/* Search Form */}
-      <Card className="bg-white/90 backdrop-blur-lg shadow-2xl border-0 max-w-4xl mx-auto mb-12">
-        <CardHeader className="text-center pb-8">
-          <CardTitle className="text-2xl font-bold text-gray-900">
-            <Shield className="h-6 w-6 inline mr-2 text-blue-600" />
+      <Card className="bg-gradient-to-br from-white/95 to-blue-50/95 backdrop-blur-xl shadow-2xl border-2 border-white/20 max-w-5xl mx-auto mb-16 overflow-hidden">
+        <CardHeader className="text-center pb-8 bg-gradient-to-r from-blue-50 to-purple-50">
+          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <Shield className="h-8 w-8 inline mr-3 text-blue-600" />
             Vehicle History Report
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-8">
           <Tabs defaultValue="vin" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-8 bg-gray-100 rounded-xl p-1">
+            <TabsList className="grid w-full grid-cols-2 mb-10 bg-gradient-to-r from-gray-100 to-blue-100 rounded-2xl p-2 shadow-inner">
               <TabsTrigger 
                 value="vin" 
-                className="rounded-lg py-3 text-base font-semibold data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                className="rounded-xl py-4 text-lg font-semibold data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
               >
                 {t.searchByVin}
               </TabsTrigger>
               <TabsTrigger 
                 value="plate" 
-                className="rounded-lg py-3 text-base font-semibold data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                className="rounded-xl py-4 text-lg font-semibold data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
               >
                 {t.searchByPlate}
               </TabsTrigger>
             </TabsList>
             
             <TabsContent value="vin">
-              <form onSubmit={handleVinSearch} className="space-y-6">
+              <form onSubmit={handleVinSearch} className="space-y-8">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <label className="block text-lg font-bold text-gray-700 mb-4">
                     {t.enterVin}
                   </label>
                   <Input
@@ -90,25 +91,25 @@ const SearchForm = () => {
                     placeholder={t.vinPlaceholder}
                     value={vinNumber}
                     onChange={(e) => setVinNumber(e.target.value)}
-                    className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                    className="h-16 text-lg border-3 border-gray-200 rounded-2xl focus:border-blue-500 focus:ring-blue-500 shadow-lg bg-white/80"
                     maxLength={17}
                   />
                 </div>
                 <Button 
                   type="submit"
-                  className="w-full h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-lg rounded-xl shadow-xl transform hover:scale-105 transition-all duration-200"
+                  className="w-full h-16 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 text-white font-bold text-xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                 >
-                  <Search className="h-5 w-5 mr-2" />
+                  <Search className="h-6 w-6 mr-3" />
                   {t.getReport}
                 </Button>
               </form>
             </TabsContent>
             
             <TabsContent value="plate">
-              <form onSubmit={handlePlateSearch} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={handlePlateSearch} className="space-y-8">
+                <div className="grid md:grid-cols-2 gap-8">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    <label className="block text-lg font-bold text-gray-700 mb-4">
                       {t.enterLicensePlate}
                     </label>
                     <Input
@@ -116,20 +117,20 @@ const SearchForm = () => {
                       placeholder={t.platePlaceholder}
                       value={licensePlate}
                       onChange={(e) => setLicensePlate(e.target.value)}
-                      className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                      className="h-16 text-lg border-3 border-gray-200 rounded-2xl focus:border-blue-500 focus:ring-blue-500 shadow-lg bg-white/80"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    <label className="block text-lg font-bold text-gray-700 mb-4">
                       {t.selectState}
                     </label>
                     <Select value={selectedState} onValueChange={setSelectedState}>
-                      <SelectTrigger className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500">
+                      <SelectTrigger className="h-16 text-lg border-3 border-gray-200 rounded-2xl focus:border-blue-500 focus:ring-blue-500 shadow-lg bg-white/80">
                         <SelectValue placeholder={t.selectState} />
                       </SelectTrigger>
-                      <SelectContent className="max-h-60">
+                      <SelectContent className="max-h-60 bg-white shadow-2xl border-2 rounded-xl">
                         {US_STATES.map((state) => (
-                          <SelectItem key={state} value={state}>
+                          <SelectItem key={state} value={state} className="text-lg py-3">
                             {state}
                           </SelectItem>
                         ))}
@@ -139,9 +140,9 @@ const SearchForm = () => {
                 </div>
                 <Button 
                   type="submit"
-                  className="w-full h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-lg rounded-xl shadow-xl transform hover:scale-105 transition-all duration-200"
+                  className="w-full h-16 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 text-white font-bold text-xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                 >
-                  <Search className="h-5 w-5 mr-2" />
+                  <Search className="h-6 w-6 mr-3" />
                   {t.getReport}
                 </Button>
               </form>
@@ -152,23 +153,23 @@ const SearchForm = () => {
 
       {/* Payment Methods */}
       <div className="text-center">
-        <p className="text-gray-600 mb-6 font-medium">{t.paymentMethods}</p>
-        <div className="flex justify-center items-center space-x-8 opacity-70">
-          <div className="flex items-center space-x-2">
-            <CreditCard className="h-8 w-8 text-blue-600" />
-            <span className="font-semibold text-gray-700">Visa</span>
+        <p className="text-gray-600 mb-8 font-semibold text-lg">{t.paymentMethods}</p>
+        <div className="flex justify-center items-center space-x-12 opacity-80">
+          <div className="flex items-center space-x-3 bg-white/60 px-6 py-3 rounded-xl shadow-lg backdrop-blur-sm">
+            <CreditCard className="h-10 w-10 text-blue-600" />
+            <span className="font-bold text-gray-700 text-lg">Visa</span>
           </div>
-          <div className="flex items-center space-x-2">
-            <CreditCard className="h-8 w-8 text-red-600" />
-            <span className="font-semibold text-gray-700">Mastercard</span>
+          <div className="flex items-center space-x-3 bg-white/60 px-6 py-3 rounded-xl shadow-lg backdrop-blur-sm">
+            <CreditCard className="h-10 w-10 text-red-600" />
+            <span className="font-bold text-gray-700 text-lg">Mastercard</span>
           </div>
-          <div className="flex items-center space-x-2">
-            <CreditCard className="h-8 w-8 text-blue-500" />
-            <span className="font-semibold text-gray-700">American Express</span>
+          <div className="flex items-center space-x-3 bg-white/60 px-6 py-3 rounded-xl shadow-lg backdrop-blur-sm">
+            <CreditCard className="h-10 w-10 text-blue-500" />
+            <span className="font-bold text-gray-700 text-lg">Amex</span>
           </div>
-          <div className="flex items-center space-x-2">
-            <CreditCard className="h-8 w-8 text-yellow-500" />
-            <span className="font-semibold text-gray-700">PayPal</span>
+          <div className="flex items-center space-x-3 bg-white/60 px-6 py-3 rounded-xl shadow-lg backdrop-blur-sm">
+            <CreditCard className="h-10 w-10 text-yellow-500" />
+            <span className="font-bold text-gray-700 text-lg">PayPal</span>
           </div>
         </div>
       </div>

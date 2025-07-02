@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Testimonials = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const testimonials = [
     {
@@ -38,10 +38,10 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 px-6 bg-white/50">
+    <section className="py-20 px-6 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">
             {t.testimonialsTitle}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -51,7 +51,7 @@ const Testimonials = () => {
         
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 border-0">
+            <Card key={index} className="bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 border-0 hover:scale-105">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <Quote className="h-8 w-8 text-blue-600 mr-3" />
@@ -62,7 +62,7 @@ const Testimonials = () => {
                   </div>
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed">
-                  "{testimonial.text[t.language as keyof typeof testimonial.text]}"
+                  "{testimonial.text[language as keyof typeof testimonial.text]}"
                 </p>
                 <div>
                   <p className="font-semibold text-gray-900">{testimonial.name}</p>
