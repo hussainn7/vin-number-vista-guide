@@ -51,25 +51,25 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
             {t.faqTitle}
           </h2>
         </div>
         
-        <Accordion type="single" collapsible className="space-y-6">
+        <Accordion type="single" collapsible className="space-y-4 sm:space-y-6">
           {faqs.map((faq, index) => (
             <AccordionItem 
               key={index} 
               value={`item-${index}`}
-              className="bg-gradient-to-r from-white/90 to-blue-50/90 backdrop-blur-sm rounded-2xl border-2 border-white/30 shadow-xl hover:shadow-2xl transition-all duration-300"
+              className="bg-gradient-to-r from-white/90 to-blue-50/90 backdrop-blur-sm rounded-xl sm:rounded-2xl border-2 border-white/30 shadow-xl hover:shadow-2xl transition-all duration-300"
             >
-              <AccordionTrigger className="px-8 py-6 text-left font-bold text-gray-900 hover:no-underline hover:bg-white/50 rounded-2xl text-lg">
+              <AccordionTrigger className="px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 text-left font-bold text-gray-900 hover:no-underline hover:bg-white/50 rounded-xl sm:rounded-2xl text-base sm:text-lg">
                 {faq.question[language]}
               </AccordionTrigger>
-              <AccordionContent className="px-8 pb-6 text-gray-700 leading-relaxed text-lg">
+              <AccordionContent className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-5 md:pb-6 text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">
                 {faq.answer[language]}
               </AccordionContent>
             </AccordionItem>
