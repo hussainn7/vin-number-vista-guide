@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Shield, CreditCard, Car } from 'lucide-react';
+import { Search, Shield, CreditCard, Car, Zap, Clock, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -65,7 +65,7 @@ const SearchForm = () => {
         </CardHeader>
         <CardContent className="p-4 sm:p-6 md:p-8">
           <Tabs defaultValue="vin" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8 md:mb-10 bg-gradient-to-r from-gray-100 to-blue-100 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-inner">
+            <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8 md:mb-10 bg-gradient-to-r from-gray-100 to-blue-100 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-inner mx-auto max-w-md">
               <TabsTrigger 
                 value="vin" 
                 className="rounded-lg sm:rounded-xl py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
@@ -80,33 +80,78 @@ const SearchForm = () => {
               </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="vin">
-              <form onSubmit={handleVinSearch} className="space-y-6 sm:space-y-8">
+            <TabsContent value="vin" className="text-center">
+              {/* VIN Benefits */}
+              <div className="mb-8 sm:mb-10">
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-6">
+                  <div className="flex items-center space-x-2 bg-gradient-to-r from-green-50 to-emerald-50 px-4 py-2 rounded-full border border-green-200">
+                    <Zap className="h-4 w-4 text-green-600" />
+                    <span className="text-sm font-semibold text-green-700">Instant Results</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-2 rounded-full border border-blue-200">
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
+                    <span className="text-sm font-semibold text-blue-700">100% Accurate</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-gradient-to-r from-purple-50 to-pink-50 px-4 py-2 rounded-full border border-purple-200">
+                    <Clock className="h-4 w-4 text-purple-600" />
+                    <span className="text-sm font-semibold text-purple-700">30 Seconds</span>
+                  </div>
+                </div>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+                  🔍 Unlock Your Vehicle's Complete History
+                </h3>
+                <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+                  Enter any VIN number to instantly reveal accidents, title issues, service records, and more. 
+                  <span className="font-semibold text-blue-600"> Don't buy blind - know before you go!</span>
+                </p>
+              </div>
+
+              <form onSubmit={handleVinSearch} className="space-y-6 sm:space-y-8 max-w-2xl mx-auto">
                 <div>
                   <label className="block text-base sm:text-lg font-bold text-gray-700 mb-3 sm:mb-4">
                     {t.enterVin}
                   </label>
-                  <Input
-                    type="text"
-                    placeholder={t.vinPlaceholder}
-                    value={vinNumber}
-                    onChange={(e) => setVinNumber(e.target.value)}
-                    className="h-12 sm:h-14 md:h-16 text-base sm:text-lg border-2 sm:border-3 border-gray-200 rounded-xl sm:rounded-2xl focus:border-blue-500 focus:ring-blue-500 shadow-lg bg-white/80"
-                    maxLength={17}
-                  />
+                  <div className="relative">
+                    <Input
+                      type="text"
+                      placeholder="e.g., 1HGCM82633A123456"
+                      value={vinNumber}
+                      onChange={(e) => setVinNumber(e.target.value.toUpperCase())}
+                      className="h-14 sm:h-16 md:h-18 text-base sm:text-lg border-3 border-gray-200 rounded-xl sm:rounded-2xl focus:border-blue-500 focus:ring-blue-500 shadow-lg bg-white/90 text-center font-mono tracking-wider"
+                      maxLength={17}
+                    />
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-4">
+                      <Search className="h-5 w-5 text-gray-400" />
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-gray-500 mt-2 text-center">
+                    VIN is usually found on your dashboard, driver's door, or registration
+                  </p>
                 </div>
                 <Button 
                   type="submit"
-                  className="w-full h-12 sm:h-14 md:h-16 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 text-white font-bold text-base sm:text-lg md:text-xl rounded-xl sm:rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
+                  className="w-full h-14 sm:h-16 md:h-18 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 text-white font-bold text-base sm:text-lg md:text-xl rounded-xl sm:rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                 >
-                  <Search className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
-                  {t.getReport}
+                  <Zap className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
+                  Get My Vehicle Report Now - $29.99
                 </Button>
+                <p className="text-xs sm:text-sm text-gray-500 text-center">
+                  ⚡ Instant download • 💯 Money-back guarantee • 🔒 Secure payment
+                </p>
               </form>
             </TabsContent>
             
-            <TabsContent value="plate">
-              <form onSubmit={handlePlateSearch} className="space-y-6 sm:space-y-8">
+            <TabsContent value="plate" className="text-center">
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+                  🚗 Search by License Plate
+                </h3>
+                <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+                  Don't have the VIN? No problem! Search using the license plate number and state.
+                </p>
+              </div>
+
+              <form onSubmit={handlePlateSearch} className="space-y-6 sm:space-y-8 max-w-2xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   <div>
                     <label className="block text-base sm:text-lg font-bold text-gray-700 mb-3 sm:mb-4">
@@ -114,10 +159,10 @@ const SearchForm = () => {
                     </label>
                     <Input
                       type="text"
-                      placeholder={t.platePlaceholder}
+                      placeholder="ABC1234"
                       value={licensePlate}
-                      onChange={(e) => setLicensePlate(e.target.value)}
-                      className="h-12 sm:h-14 md:h-16 text-base sm:text-lg border-2 sm:border-3 border-gray-200 rounded-xl sm:rounded-2xl focus:border-blue-500 focus:ring-blue-500 shadow-lg bg-white/80"
+                      onChange={(e) => setLicensePlate(e.target.value.toUpperCase())}
+                      className="h-12 sm:h-14 md:h-16 text-base sm:text-lg border-2 sm:border-3 border-gray-200 rounded-xl sm:rounded-2xl focus:border-blue-500 focus:ring-blue-500 shadow-lg bg-white/80 text-center font-mono tracking-wider"
                     />
                   </div>
                   <div>
@@ -143,7 +188,7 @@ const SearchForm = () => {
                   className="w-full h-12 sm:h-14 md:h-16 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 text-white font-bold text-base sm:text-lg md:text-xl rounded-xl sm:rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                 >
                   <Search className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
-                  {t.getReport}
+                  Get Report by License Plate - $29.99
                 </Button>
               </form>
             </TabsContent>
